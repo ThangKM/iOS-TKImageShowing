@@ -144,13 +144,13 @@ class TKImageViewController: UIViewController {
 extension TKImageViewController:UICollectionViewDataSource{
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return images.compactMap({$0}).count
+        return images.flatMap({$0}).count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: self.cellId, for: indexPath) as! TKImageCell
-        let imageSource = self.images.compactMap({$0})
+        let imageSource = self.images.flatMap({$0})
         cell.setImage(imageSource[indexPath.row])
         
         cell.config(isZoomable: self.zoomEnable,
