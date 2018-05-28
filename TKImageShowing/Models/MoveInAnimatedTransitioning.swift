@@ -59,7 +59,7 @@ UIViewControllerAnimatedTransitioning{
             }
             
             var imvViewToVC:UIView?
-            if let tkVC = toVC as? TKImageViewController{
+            if let tkVC = toVC as? TKImageShowing{
                 if let  cell = tkVC.currentCell{
                     if let imvSnapshot = cell.imageItem.imageView.snapshotView(afterScreenUpdates: true){
                         imvViewToVC = imvSnapshot

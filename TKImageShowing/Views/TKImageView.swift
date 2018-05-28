@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TKImageView: UIImageView {
+open class TKImageView: UIImageView {
     
     @IBInspectable var zoomalbe:Bool =  true
     
@@ -26,12 +26,12 @@ class TKImageView: UIImageView {
         commonInit()
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
     }
     
-    override func layoutSubviews() {
+    override open func layoutSubviews() {
         super.layoutSubviews()
         commonInit()
     }
@@ -41,9 +41,9 @@ class TKImageView: UIImageView {
         self.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.presentFullScreen)))
     }
     
-    @objc func presentFullScreen(){
+    @objc private func presentFullScreen(){
         isSelectedToShowFullScreen = true
-        let vc = TKImageViewController()
+        let vc = TKImageShowing()
         vc.zoomEnable = self.zoomalbe
         vc.spacing = spacing
         vc.maximumZoom = maximumZoom

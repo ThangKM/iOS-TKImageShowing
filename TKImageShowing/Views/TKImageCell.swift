@@ -8,9 +8,9 @@
 
 import UIKit
 
-class TKImageCell: UICollectionViewCell {
+ open class TKImageCell: UICollectionViewCell {
     
-    var imageItem:TKImageItem!
+    open var imageItem:TKImageItem!
     private var originalImagePos:CGPoint?
     private var isInit = true
     var endZoom:VoidCallBack?{
@@ -23,13 +23,13 @@ class TKImageCell: UICollectionViewCell {
         self.commonInit()
     }
 
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
     
     //MARK:- Common init
-    private func commonInit(){
+    func commonInit(){
         imageItem = TKImageItem()
         self.addSubview(imageItem)
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.quickZoom))
@@ -46,7 +46,7 @@ class TKImageCell: UICollectionViewCell {
         imageItem.update()
     }
     
-    @objc private func quickZoom(){
+    @objc func quickZoom(){
         if self.imageItem.zoomScale == 1{
             self.imageItem.setZoomScale(self.imageItem.maximumZoom, animated: true)
         }else{

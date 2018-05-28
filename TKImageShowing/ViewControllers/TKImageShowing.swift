@@ -9,16 +9,16 @@
 import UIKit
 
 
-class TKImageViewController: UIViewController {
+open class TKImageShowing: UIViewController {
     
-    var images = [TKImageSource?]()
+    open var images = [TKImageSource?]()
     
-    var currentIndex = 0
-    var maximumZoom = CGFloat(3)
-    var zoomEnable = true
-    var spacing = CGFloat(10)
-    var backgroudColor:UIColor = .black
-    weak var animatedView:UIImageView?
+    open var currentIndex = 0
+    open var maximumZoom = CGFloat(3)
+    open var zoomEnable = true
+    open var spacing = CGFloat(10)
+    open var backgroudColor:UIColor = .black
+    open weak var animatedView:UIImageView?
     
     private let actionViewHeight = CGFloat(35)
     fileprivate let cellId = "TKImageCell"
@@ -29,36 +29,36 @@ class TKImageViewController: UIViewController {
     private var btnClose:UIButton!
     private var isShowActionView = true
     
-    var currentCell:TKImageCell?{
+    open var currentCell:TKImageCell?{
         get{
             return cvwCollection.visibleCells.first as? TKImageCell
         }
     }
     
-    override func viewDidLoad() {
+    override open func viewDidLoad() {
         self.modalTransitionStyle = .crossDissolve
         self.transitioningDelegate = self
         super.viewDidLoad()
         commonInit()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
+    override open func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         scrollItem(to: currentIndex)
     }
     
-    override var prefersStatusBarHidden: Bool{
+    override open var prefersStatusBarHidden: Bool{
         return true
     }
     
-    override func viewDidAppear(_ animated: Bool) {
+    override open func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         showActionView()
     }
     
     //MARK:- COMMON INIT
     
-    private func commonInit(){
+    func commonInit(){
         self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.showActionView)))
         setupCollectionView()
         setupActionView()
@@ -66,7 +66,7 @@ class TKImageViewController: UIViewController {
 
     }
     
-    private func setupCollectionView(){
+    func setupCollectionView(){
         
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.itemSize = CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
@@ -84,7 +84,7 @@ class TKImageViewController: UIViewController {
         
     }
     
-    private func setupActionView(){
+    func setupActionView(){
     
         self.actionView = UIView(frame: .zero)
         self.actionView.translatesAutoresizingMaskIntoConstraints = false
@@ -105,7 +105,7 @@ class TKImageViewController: UIViewController {
 
     }
     
-    private func setupCloseButton(){
+    func setupCloseButton(){
         self.btnClose = UIButton(frame: CGRect(x: 10, y: 0, width: self.actionViewHeight, height: self.actionViewHeight))
         self.btnClose.setImage(UIImage(named: "ic_close"), for: .normal)
         self.btnClose.addTarget(self, action: #selector(self.closing), for: .touchUpInside)
@@ -114,7 +114,7 @@ class TKImageViewController: UIViewController {
     }
     
     //MARK:- Action
-    @objc private func closing(){
+    @objc func closing(){
 
         if let currentCell = self.cvwCollection.visibleCells.first as? TKImageCell{
             currentCell.endZoom = {[weak self] in
@@ -125,7 +125,7 @@ class TKImageViewController: UIViewController {
         }
     }
     
-    @objc private func showActionView(){
+    @objc func showActionView(){
         
         UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseIn, animations: {
             let value =  self.isShowActionView ?  1 :  0
@@ -135,19 +135,19 @@ class TKImageViewController: UIViewController {
         }
     }
     
-    private func scrollItem(to index:Int){
+    func scrollItem(to index:Int){
         cvwCollection.scrollToItem(at: IndexPath(row: index, section: 0), at: .right, animated: false)
     }
 }
 
 //MARK:- EXTENSION UICollectionViewDataSource
-extension TKImageViewController:UICollectionViewDataSource{
+extension TKImageShowing:UICollectionViewDataSource{
 
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.images.flatMap({$0}).count
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: self.cellId, for: indexPath) as! TKImageCell
         let imageSource = self.images.flatMap({$0})
@@ -165,8 +165,8 @@ extension TKImageViewController:UICollectionViewDataSource{
 }
 
 //MARK:- EXTENSION UICollectionViewDataSource
-extension TKImageViewController: UICollectionViewDelegate{
-    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+extension TKImageShowing: UICollectionViewDelegate{
+    public func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         if let tkCell = cell as? TKImageCell{
             tkCell.resetZoom()
         }
@@ -176,15 +176,15 @@ extension TKImageViewController: UICollectionViewDelegate{
 }
 
 //MARK: - Transition Animation
-extension TKImageViewController:UIViewControllerTransitioningDelegate{
-    func animationController(forPresented presented: UIViewController,
+extension TKImageShowing:UIViewControllerTransitioningDelegate{
+    public func animationController(forPresented presented: UIViewController,
                              presenting: UIViewController,
                              source: UIViewController)
         -> UIViewControllerAnimatedTransitioning? {
             return MoveInPresentAnimatedTransitioning(animatedView: self.animatedView)
     }
     
-    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+    public func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         return MoveOutPresentAnimatedTransitioning(animatedView: self.animatedView, animatedCell: self.currentCell)
     }
 }

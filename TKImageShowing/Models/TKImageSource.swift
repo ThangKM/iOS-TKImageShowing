@@ -9,11 +9,11 @@
 import UIKit
 import SDWebImage
 
-class TKImageSource{
-    var url:String?
-    var image:UIImage?
+open class TKImageSource{
+    open var url:String?
+    open var image:UIImage?
     
-    init(url:String?, image:UIImage?) {
+    public init(url:String?, image:UIImage?) {
         self.url = url
         self.image = image
     }
