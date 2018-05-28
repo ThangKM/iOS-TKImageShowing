@@ -16,8 +16,8 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "TKImageShowing"
-  s.version      = "0.0.1"
-  s.summary      = "A short description of TKImageShowing."
+  s.version      = "0.0.2"
+  s.summary      = "you can use this library to show image fullscreen."
 
   # This description is used to generate tags and improve search results.
   #   * Think: What does it do? Why did you write it? What is the focus?
@@ -25,9 +25,10 @@ Pod::Spec.new do |s|
   #   * Write the description between the DESC delimiters below.
   #   * Finally, don't worry about the indent, CocoaPods strips it!
   s.description  = <<-DESC
+you can use this library to show image fullscreen
                    DESC
 
-  s.homepage     = "http://EXAMPLE/TKImageShowing"
+  s.homepage     = "https://github.com/ThangKM/iOS-TKImageShowing"
   # s.screenshots  = "www.example.com/screenshots_1.gif", "www.example.com/screenshots_2.gif"
 
 
@@ -38,7 +39,7 @@ Pod::Spec.new do |s|
   #  Popular ones are 'MIT', 'BSD' and 'Apache License, Version 2.0'.
   #
 
-  s.license      = "MIT (example)"
+  s.license      = "MIT"
   # s.license      = { :type => "MIT", :file => "FILE_LICENSE" }
 
 
@@ -52,10 +53,10 @@ Pod::Spec.new do |s|
   #  profile URL.
   #
 
-  s.author             = { "Thang Kieu" => "kieumanhthang88@gmail.com" }
-  # Or just: s.author    = "Thang Kieu"
-  # s.authors            = { "Thang Kieu" => "kieumanhthang88@gmail.com" }
-  # s.social_media_url   = "https://www.facebook.com/profile.php?id=100004814196327"
+  s.author             = { "Thang Kieu" => "thangkm.lk@gmail.com" }
+  # Or just: s.author    = "appscyclone dev"
+  # s.authors            = { "appscyclone dev" => "dev@apps-cyclone.com" }
+  # s.social_media_url   = "http://twitter.com/appscyclone dev"
 
   # ――― Platform Specifics ――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   #
@@ -63,8 +64,8 @@ Pod::Spec.new do |s|
   #  the deployment target. You can optionally include the target after the platform.
   #
 
-  # s.platform     = :ios
-  # s.platform     = :ios, "9.0"
+   s.platform     = :ios
+   s.platform     = :ios, "9.0"
 
   #  When using multiple platforms
   # s.ios.deployment_target = "9.0"
@@ -79,7 +80,7 @@ Pod::Spec.new do |s|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  s.source       = { :git => "https://github.com/ThangKM/TKImageShowing-iOS.git", :tag => "#{s.version}" }
+  s.source       = { :git => "https://github.com/ThangKM/iOS-TKImageShowing.git", :tag => "#{s.version}" }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -90,8 +91,8 @@ Pod::Spec.new do |s|
   #  Not including the public_header_files will make all headers public.
   #
 
-s.source_files  = "Classes", "Classes/**/*.{swift}"
-  s.exclude_files = "Classes/Exclude"
+  s.source_files  = "TKImageShowing", "TKImageShowing/**/*.{swift}"
+  s.exclude_files = "TKImageShowing/Exclude"
 
   # s.public_header_files = "Classes/**/*.h"
 
@@ -104,8 +105,8 @@ s.source_files  = "Classes", "Classes/**/*.{swift}"
   #  non-essential files like tests, examples and documentation.
   #
 
-  # s.resource  = "ic_close.pdf"
-  # s.resources = "Views/*.pdf"
+  # s.resource  = "icon.png"
+  # s.resources = "Resources/*.png"
 
   # s.preserve_paths = "FilesToSave", "MoreFilesToSave"
 
@@ -116,7 +117,7 @@ s.source_files  = "Classes", "Classes/**/*.{swift}"
   #  the lib prefix of their name.
   #
 
-  # s.framework  = "UIKit"
+  # s.framework  = "SomeFramework"
   # s.frameworks = "SomeFramework", "AnotherFramework"
 
   # s.library   = "iconv"
@@ -132,6 +133,6 @@ s.source_files  = "Classes", "Classes/**/*.{swift}"
   # s.requires_arc = true
 
   # s.xcconfig = { "HEADER_SEARCH_PATHS" => "$(SDKROOT)/usr/include/libxml2" }
-  # s.dependency 'SDWebImage', '~> 4.0'
+    s.dependency "SDWebImage", "~> 4.0"
 
 end

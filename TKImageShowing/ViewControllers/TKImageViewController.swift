@@ -21,7 +21,7 @@ class TKImageViewController: UIViewController {
     weak var animatedView:UIImageView?
     
     private let actionViewHeight = CGFloat(35)
-    private let cellId = "TKImageCell"
+    fileprivate let cellId = "TKImageCell"
     
     private var isInCollection = false
     private var cvwCollection:UICollectionView!
@@ -91,7 +91,12 @@ class TKImageViewController: UIViewController {
         self.view.addSubview(self.actionView)
         self.view.bringSubview(toFront: self.actionView)
         
-        let margin = self.view.safeAreaLayoutGuide
+        var margin:UILayoutGuide
+        if #available(iOS 11.0, *) {
+            margin = self.view.safeAreaLayoutGuide
+        } else {
+            margin = self.view.layoutMarginsGuide
+        }
         self.actionView.topAnchor.constraint(equalTo: margin.topAnchor).isActive = true
         self.actionView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
         self.actionView.heightAnchor.constraint(equalToConstant: self.actionViewHeight).isActive = true
