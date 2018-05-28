@@ -131,6 +131,7 @@ you can use this library to show image fullscreen
   #  you can include multiple dependencies to ensure it works.
 
   # s.requires_arc = true
+	s.pod_target_xcconfig = { 'SWIFT_VERSION' => '3.3' }
 
   # s.xcconfig = { "HEADER_SEARCH_PATHS" => "$(SDKROOT)/usr/include/libxml2" }
     s.dependency "SDWebImage", "~> 4.0"
