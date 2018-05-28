@@ -144,7 +144,7 @@ class TKImageViewController: UIViewController {
 extension TKImageViewController:UICollectionViewDataSource{
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return images.flatMap({$0}).count
+        return self.images.flatMap({$0}).count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
