@@ -106,7 +106,9 @@ you can use this library to show image fullscreen
   #
 
   # s.resource  = "icon.png"
-  s.resources = "TKImageShowing/**/*.{png}"
+  s.resource_bundles = {
+'TKImageShowing' => ['TKImageShowing/Resources/**/*.{png}']
+}
 
   # s.preserve_paths = "FilesToSave", "MoreFilesToSave"
 

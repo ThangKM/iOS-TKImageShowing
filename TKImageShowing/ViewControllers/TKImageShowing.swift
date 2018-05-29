@@ -20,7 +20,7 @@ open class TKImageShowing: UIViewController {
     open var backgroudColor:UIColor = .black
     open weak var animatedView:UIImageView?
     
-    private let actionViewHeight = CGFloat(35)
+    private let actionViewHeight = CGFloat(34)
     fileprivate let cellId = "TKImageCell"
     
     private var isInCollection = false
@@ -106,8 +106,13 @@ open class TKImageShowing: UIViewController {
     }
     
     func setupCloseButton(){
-        self.btnClose = UIButton(frame: CGRect(x: 10, y: 0, width: self.actionViewHeight, height: self.actionViewHeight))
-        self.btnClose.setImage(UIImage(named: "close.png"), for: .normal)
+        self.btnClose = UIButton(frame: CGRect(x: 10, y: 9.5, width: 15, height: 15))
+        let bundle = Bundle(for: TKImageShowing.self)
+        let bundleURL = bundle.resourceURL?.appendingPathComponent("TKImageShowing.bundle")
+        let resource = Bundle(url: bundleURL!)
+        self.btnClose.setImage(UIImage(named: "close.png", in: resource, compatibleWith: nil), for: .normal)
+        self.btnClose.contentMode = .scaleToFill
+        btnClose.clipsToBounds = true
         self.btnClose.setTitleColor(UIColor.white, for: .normal)
         self.btnClose.addTarget(self, action: #selector(self.closing), for: .touchUpInside)
         self.actionView.addSubview(self.btnClose)
