@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "TKImageShowing"
-  s.version      = "1.0.1"
+  s.version      = "1.0.3"
   s.summary      = "you can use this library to show image fullscreen."
 
   # This description is used to generate tags and improve search results.
@@ -106,7 +106,7 @@ you can use this library to show image fullscreen
   #
 
   # s.resource  = "icon.png"
-  # s.resources = "Resources/*.png"
+  s.resources = "TKImageShowing/**/*.{png}"
 
   # s.preserve_paths = "FilesToSave", "MoreFilesToSave"
 

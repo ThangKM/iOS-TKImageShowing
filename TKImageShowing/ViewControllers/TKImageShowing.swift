@@ -107,7 +107,8 @@ open class TKImageShowing: UIViewController {
     
     func setupCloseButton(){
         self.btnClose = UIButton(frame: CGRect(x: 10, y: 0, width: self.actionViewHeight, height: self.actionViewHeight))
-        self.btnClose.setImage(UIImage(named: "ic_close"), for: .normal)
+        self.btnClose.setImage(UIImage(named: "close.png"), for: .normal)
+        self.btnClose.setTitleColor(UIColor.white, for: .normal)
         self.btnClose.addTarget(self, action: #selector(self.closing), for: .touchUpInside)
         self.actionView.addSubview(self.btnClose)
         

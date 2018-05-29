@@ -15,7 +15,7 @@
 		3713290120BC5E5200B9262C /* TKImageItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 371328FE20BC5E5200B9262C /* TKImageItem.swift */; };
 		3713290220BC5E5200B9262C /* TKImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 371328FF20BC5E5200B9262C /* TKImageView.swift */; };
 		3713290420BC5E6800B9262C /* TKImageShowing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3713290320BC5E6800B9262C /* TKImageShowing.swift */; };
-		3713290620BC5E7500B9262C /* ic_close.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 3713290520BC5E7400B9262C /* ic_close.pdf */; };
+		3720B70020BD1DA00032F7C1 /* close.png in Resources */ = {isa = PBXBuildFile; fileRef = 3720B6FF20BD1DA00032F7C1 /* close.png */; };
 		B3803B2C084DD173C708B8D9 /* Pods_TKImageShowing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCC46C917753F3A43FC00556 /* Pods_TKImageShowing.framework */; };
 /* End PBXBuildFile section */
 
@@ -31,7 +31,7 @@
 		371328FE20BC5E5200B9262C /* TKImageItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TKImageItem.swift; sourceTree = "<group>"; };
 		371328FF20BC5E5200B9262C /* TKImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TKImageView.swift; sourceTree = "<group>"; };
 		3713290320BC5E6800B9262C /* TKImageShowing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TKImageShowing.swift; sourceTree = "<group>"; };
-		3713290520BC5E7400B9262C /* ic_close.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = ic_close.pdf; sourceTree = "<group>"; };
+		3720B6FF20BD1DA00032F7C1 /* close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = close.png; sourceTree = "<group>"; };
 		B90E63F16DC960F9FD03744B /* Pods-TKImageShowing.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TKImageShowing.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TKImageShowing/Pods-TKImageShowing.debug.xcconfig"; sourceTree = "<group>"; };
 		FCC46C917753F3A43FC00556 /* Pods_TKImageShowing.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TKImageShowing.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -86,7 +86,7 @@
 		371328EB20BC5DE200B9262C /* TKImageShowing */ = {
 			isa = PBXGroup;
 			children = (
-				37D8871720BC90C600CFAD1F /* Resources */,
+				3720B6FE20BD1DA00032F7C1 /* Resources */,
 				371328F620BC5DF800B9262C /* Models */,
 				371328F520BC5DF300B9262C /* Views */,
 				371328F420BC5DE800B9262C /* ViewControllers */,
@@ -124,10 +124,10 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		37D8871720BC90C600CFAD1F /* Resources */ = {
+		3720B6FE20BD1DA00032F7C1 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				3713290520BC5E7400B9262C /* ic_close.pdf */,
+				3720B6FF20BD1DA00032F7C1 /* close.png */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -203,7 +203,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3713290620BC5E7500B9262C /* ic_close.pdf in Resources */,
+				3720B70020BD1DA00032F7C1 /* close.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
