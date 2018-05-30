@@ -26,7 +26,7 @@ open class TKImageShowing: UIViewController, Zoomable {
     fileprivate let cellId = "TKImageCell"
     
     private var isInCollection = false
-    private var cvwCollection:UICollectionView!
+    fileprivate var cvwCollection:UICollectionView!
     private var actionView:UIView!
     private var btnClose:UIButton!
     private var isShowActionView = true

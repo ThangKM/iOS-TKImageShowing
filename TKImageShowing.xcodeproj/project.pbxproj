@@ -16,6 +16,7 @@
 		3713290220BC5E5200B9262C /* TKImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 371328FF20BC5E5200B9262C /* TKImageView.swift */; };
 		3713290420BC5E6800B9262C /* TKImageShowing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3713290320BC5E6800B9262C /* TKImageShowing.swift */; };
 		3720B70020BD1DA00032F7C1 /* close.png in Resources */ = {isa = PBXBuildFile; fileRef = 3720B6FF20BD1DA00032F7C1 /* close.png */; };
+		37668E0120BF1B44003F903A /* Zoomable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37668E0020BF1B44003F903A /* Zoomable.swift */; };
 		B3803B2C084DD173C708B8D9 /* Pods_TKImageShowing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCC46C917753F3A43FC00556 /* Pods_TKImageShowing.framework */; };
 /* End PBXBuildFile section */
 
@@ -32,6 +33,7 @@
 		371328FF20BC5E5200B9262C /* TKImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TKImageView.swift; sourceTree = "<group>"; };
 		3713290320BC5E6800B9262C /* TKImageShowing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TKImageShowing.swift; sourceTree = "<group>"; };
 		3720B6FF20BD1DA00032F7C1 /* close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = close.png; sourceTree = "<group>"; };
+		37668E0020BF1B44003F903A /* Zoomable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Zoomable.swift; sourceTree = "<group>"; };
 		B90E63F16DC960F9FD03744B /* Pods-TKImageShowing.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TKImageShowing.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TKImageShowing/Pods-TKImageShowing.debug.xcconfig"; sourceTree = "<group>"; };
 		FCC46C917753F3A43FC00556 /* Pods_TKImageShowing.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TKImageShowing.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -119,6 +121,7 @@
 			children = (
 				371328F720BC5E4000B9262C /* MoveInAnimatedTransitioning.swift */,
 				371328F820BC5E4000B9262C /* MoveOutAnimatedTransitioning.swift */,
+				37668E0020BF1B44003F903A /* Zoomable.swift */,
 				371328F920BC5E4000B9262C /* TKImageSource.swift */,
 			);
 			path = Models;
@@ -252,6 +255,7 @@
 			files = (
 				3713290120BC5E5200B9262C /* TKImageItem.swift in Sources */,
 				371328FB20BC5E4000B9262C /* MoveOutAnimatedTransitioning.swift in Sources */,
+				37668E0120BF1B44003F903A /* Zoomable.swift in Sources */,
 				3713290420BC5E6800B9262C /* TKImageShowing.swift in Sources */,
 				371328FC20BC5E4000B9262C /* TKImageSource.swift in Sources */,
 				3713290020BC5E5200B9262C /* TKImageCell.swift in Sources */,
