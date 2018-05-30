@@ -180,7 +180,7 @@ extension TKImageShowing: UICollectionViewDelegate{
     
     public func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let center = CGPoint(x: scrollView.contentOffset.x + (scrollView.frame.width / 2), y: (scrollView.frame.height / 2))
-        if let indexPath = cvwCollection.indexPathForItem(at: center) {
+        if let indexPath = self.cvwCollection.indexPathForItem(at: center) {
             self.currentIndex = indexPath.row
         }
     }
