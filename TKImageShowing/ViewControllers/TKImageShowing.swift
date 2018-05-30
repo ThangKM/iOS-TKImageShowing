@@ -9,7 +9,7 @@
 import UIKit
 
 
-open class TKImageShowing: UIViewController, Zoomable {
+open class TKImageShowing: UIViewController, Zoomable, UICollectionViewDelegate {
     
     open var canZoom: Bool = true
     open var bgColor: UIColor = .black
@@ -25,8 +25,9 @@ open class TKImageShowing: UIViewController, Zoomable {
     private let actionViewHeight = CGFloat(34)
     fileprivate let cellId = "TKImageCell"
     
-    private var isInCollection = false
     var cvwCollection:UICollectionView!
+    
+    private var isInCollection = false
     private var actionView:UIView!
     private var btnClose:UIButton!
     private var isShowActionView = true
@@ -147,6 +148,20 @@ open class TKImageShowing: UIViewController, Zoomable {
     func scrollItem(to index:Int){
         cvwCollection.scrollToItem(at: IndexPath(row: index, section: 0), at: .right, animated: false)
     }
+    
+    //MARK:- EXTENSION UICollectionViewDelegae
+    public func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if let tkCell = cell as? TKImageCell{
+            tkCell.resetZoom()
+        }
+    }
+    
+    public func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let center = CGPoint(x: scrollView.contentOffset.x + (scrollView.frame.width / 2), y: (scrollView.frame.height / 2))
+        if let indexPath = self.cvwCollection.indexPathForItem(at: center) {
+            self.currentIndex = indexPath.row
+        }
+    }
 }
 
 //MARK:- EXTENSION UICollectionViewDataSource
@@ -170,22 +185,6 @@ extension TKImageShowing:UICollectionViewDataSource{
     
 }
 
-//MARK:- EXTENSION UICollectionViewDataSource
-extension TKImageShowing: UICollectionViewDelegate{
-    public func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        if let tkCell = cell as? TKImageCell{
-            tkCell.resetZoom()
-        }
-    }
-    
-    public func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let center = CGPoint(x: scrollView.contentOffset.x + (scrollView.frame.width / 2), y: (scrollView.frame.height / 2))
-        if let indexPath = self.cvwCollection.indexPathForItem(at: center) {
-            self.currentIndex = indexPath.row
-        }
-    }
-    
-}
 
 //MARK: - Transition Animation
 extension TKImageShowing:UIViewControllerTransitioningDelegate{
