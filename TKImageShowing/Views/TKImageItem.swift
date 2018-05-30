@@ -9,12 +9,16 @@
 import UIKit
 typealias VoidCallBack = ()->()
 
-open class TKImageItem: UIScrollView{
+open class TKImageItem: UIScrollView, Zoomable{
+   
     
+
     //MARK: - SUPPORT VARIABLE
     open var maximumZoom = CGFloat(3)
-    open var zoomEnable = true
+    open var canZoom: Bool = true
     open var spacing = CGFloat(10)
+    public var bgColor: UIColor = .black
+    
     var endZoom:VoidCallBack?
     open let imageView = UIImageView(frame: UIScreen.main.bounds)
  
@@ -38,7 +42,7 @@ open class TKImageItem: UIScrollView{
     }
     
     private func setupUI(){
-        
+        self.backgroundColor = bgColor
         maximumZoomScale = self.maximumZoom
         showsVerticalScrollIndicator = false
         showsHorizontalScrollIndicator = false
@@ -129,7 +133,7 @@ extension TKImageItem: UIScrollViewDelegate{
     }
     
     public func viewForZooming(in scrollView: UIScrollView) -> UIView? {
-        return zoomEnable ? self.imageView : nil
+        return canZoom ? self.imageView : nil
     }
     
 }

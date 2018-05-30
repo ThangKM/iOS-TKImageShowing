@@ -15,9 +15,12 @@ UIViewControllerAnimatedTransitioning{
     weak var referenceView:UIImageView? // of toVC
     weak var referenceCell:TKImageCell? // of fromVC
     
-    init(animatedView:UIImageView?,animatedCell:TKImageCell?){
+    private var isAnimated:Bool
+    
+    init(animatedView:UIImageView?,animatedCell:TKImageCell?,isAnimated:Bool = true){
         self.referenceView = animatedView
         self.referenceCell = animatedCell
+        self.isAnimated = isAnimated
     }
     
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
@@ -36,13 +39,11 @@ UIViewControllerAnimatedTransitioning{
         
         if let tkView = referenceView as? TKImageView{
             tkView.isSelectedToShowFullScreen = false
-            imvOfToVC = referenceView
-            imvOfToVC.isHidden = true
-        }else if referenceView != nil{
-            imvOfToVC = referenceView
+        }
+        imvOfToVC = referenceView
+        if imvOfToVC.image != nil && isAnimated{
             imvOfToVC.isHidden = true
         }
-        
         containerView.addSubview(toVC.view)
         
         guard let snapShot = toVC.view.snapshotView(afterScreenUpdates: true) else{
@@ -55,7 +56,6 @@ UIViewControllerAnimatedTransitioning{
             let bgView = UIView(frame: toVC.view.bounds)
             bgView.backgroundColor = UIColor.black
             bgView.alpha = 1
-            
             containerView.addSubview(snapShot)
             containerView.addSubview(bgView)
             containerView.addSubview(vwAnimated)
@@ -68,10 +68,15 @@ UIViewControllerAnimatedTransitioning{
             }
             
             UIView.animate(withDuration: transitionDuration(using: transitionContext), delay: 0.0, options: .curveEaseInOut, animations: {
-                if imvOfToVC.superview != toVC.view{
-                    vwAnimated.frame = imvOfToVC.frame
+                if self.isAnimated{
+                    if imvOfToVC.superview != toVC.view{
+                        vwAnimated.frame = imvOfToVC.frame
+                    }else{
+                        vwAnimated.frame = originFrame
+                    }
                 }else{
-                     vwAnimated.frame = originFrame
+                    vwAnimated.alpha = 0
+                    vwAnimated.frame = .zero
                 }
                 bgView.alpha = 0
                 

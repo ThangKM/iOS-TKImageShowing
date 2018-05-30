@@ -9,16 +9,18 @@
 import UIKit
 
 
-open class TKImageShowing: UIViewController {
+open class TKImageShowing: UIViewController, Zoomable {
+    
+    open var canZoom: Bool = true
+    open var bgColor: UIColor = .black
+    open var spacing: CGFloat = CGFloat(10)
+    open var maximumZoom: CGFloat = CGFloat(3)
+    
     
     open var images = [TKImageSource?]()
-    
     open var currentIndex = 0
-    open var maximumZoom = CGFloat(3)
-    open var zoomEnable = true
-    open var spacing = CGFloat(10)
-    open var backgroudColor:UIColor = .black
     open weak var animatedView:UIImageView?
+    open var originIndex = 0
     
     private let actionViewHeight = CGFloat(34)
     fileprivate let cellId = "TKImageCell"
@@ -44,6 +46,7 @@ open class TKImageShowing: UIViewController {
     
     override open func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.originIndex = currentIndex
         scrollItem(to: currentIndex)
     }
     
@@ -159,10 +162,7 @@ extension TKImageShowing:UICollectionViewDataSource{
         let imageSource = self.images.flatMap({$0})
         cell.setImage(imageSource[indexPath.row])
         
-        cell.config(isZoomable: self.zoomEnable,
-                    spacing: self.spacing,
-                    maximumZoom: self.maximumZoom,
-                    bgColor: self.backgroudColor)
+        cell.config(with: self)
         return cell
     }
     
@@ -178,6 +178,12 @@ extension TKImageShowing: UICollectionViewDelegate{
         }
     }
     
+    public func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let center = CGPoint(x: scrollView.contentOffset.x + (scrollView.frame.width / 2), y: (scrollView.frame.height / 2))
+        if let indexPath = cvwCollection.indexPathForItem(at: center) {
+            self.currentIndex = indexPath.row
+        }
+    }
     
 }
 
@@ -191,6 +197,6 @@ extension TKImageShowing:UIViewControllerTransitioningDelegate{
     }
     
     public func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return MoveOutPresentAnimatedTransitioning(animatedView: self.animatedView, animatedCell: self.currentCell)
+        return MoveOutPresentAnimatedTransitioning(animatedView: self.animatedView, animatedCell: self.currentCell, isAnimated: self.originIndex == self.currentIndex)
     }
 }

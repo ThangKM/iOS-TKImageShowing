@@ -38,11 +38,11 @@ import UIKit
         self.addGestureRecognizer(tapGesture)
     }
     
-    func config(isZoomable:Bool, spacing:CGFloat, maximumZoom: CGFloat, bgColor:UIColor){
-        imageItem.maximumZoom = maximumZoom
-        imageItem.zoomEnable = isZoomable
-        imageItem.spacing = spacing
-        imageItem.backgroundColor = bgColor
+    func config(with zoomable:Zoomable){
+        imageItem.maximumZoom = zoomable.maximumZoom
+        imageItem.canZoom = zoomable.canZoom
+        imageItem.spacing = zoomable.spacing
+        imageItem.bgColor = zoomable.bgColor
         imageItem.update()
     }
     

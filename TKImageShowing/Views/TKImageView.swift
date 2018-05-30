@@ -44,10 +44,10 @@ open class TKImageView: UIImageView {
     @objc private func presentFullScreen(){
         isSelectedToShowFullScreen = true
         let vc = TKImageShowing()
-        vc.zoomEnable = self.zoomalbe
+        vc.canZoom = self.zoomalbe
         vc.spacing = spacing
         vc.maximumZoom = maximumZoom
-        vc.backgroudColor = bgColor
+        vc.bgColor = self.bgColor
         vc.animatedView = self
         vc.images = [TKImageSource(url:nil,image: self.image)]
         self.parentViewController?.present(vc, animated: true, completion: nil)

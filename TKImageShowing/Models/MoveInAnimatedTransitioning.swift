@@ -38,7 +38,7 @@ UIViewControllerAnimatedTransitioning{
             return
             
         } //snapshot fromview when animated view was hidden
-        if let vwAnimated = animatedView, let tkimageView  = self.referenceView{
+        if let vwAnimated = animatedView, let tkimageView  = self.referenceView, tkimageView.image != nil {
             vwAnimated.contentMode = tkimageView.contentMode
             let bgView = UIView(frame: toVC.view.bounds)
             bgView.backgroundColor = UIColor.black
