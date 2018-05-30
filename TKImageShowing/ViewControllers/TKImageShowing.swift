@@ -149,7 +149,7 @@ open class TKImageShowing: UIViewController, Zoomable, UICollectionViewDelegate 
         cvwCollection.scrollToItem(at: IndexPath(row: index, section: 0), at: .right, animated: false)
     }
     
-    //MARK:- EXTENSION UICollectionViewDelegae
+    //MARK:- UICollectionViewDelegate
     public func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         if let tkCell = cell as? TKImageCell{
             tkCell.resetZoom()
@@ -180,9 +180,6 @@ extension TKImageShowing:UICollectionViewDataSource{
         cell.config(with: self)
         return cell
     }
-    
- 
-    
 }
 
 
