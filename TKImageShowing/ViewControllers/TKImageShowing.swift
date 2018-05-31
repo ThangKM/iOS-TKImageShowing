@@ -9,7 +9,7 @@
 import UIKit
 
 
-open class TKImageShowing: UIViewController, Zoomable, UICollectionViewDelegate,UICollectionViewDataSource {
+open class TKImageShowing: UIViewController, Zoomable{
     
     open var canZoom: Bool = true
     open var bgColor: UIColor = .black
@@ -148,8 +148,9 @@ open class TKImageShowing: UIViewController, Zoomable, UICollectionViewDelegate,
     func scrollItem(to index:Int){
         cwCollection.scrollToItem(at: IndexPath(row: index, section: 0), at: .right, animated: false)
     }
-    
-    //MARK:- UICollectionViewDelegate
+}
+ //MARK:- UICollectionViewDelegate
+extension TKImageShowing:UICollectionViewDelegate{
     public func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         if let tkCell = cell as? TKImageCell{
             tkCell.resetZoom()
@@ -162,8 +163,9 @@ open class TKImageShowing: UIViewController, Zoomable, UICollectionViewDelegate,
             self.currentIndex = indexPath.row
         }
     }
-    
-    
+}
+
+extension TKImageShowing:UICollectionViewDataSource{
     //MARK:- EXTENSION UICollectionViewDataSource
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.images.flatMap({$0}).count
@@ -180,7 +182,6 @@ open class TKImageShowing: UIViewController, Zoomable, UICollectionViewDelegate,
     }
     
 }
-
 
 //MARK: - Transition Animation
 extension TKImageShowing:UIViewControllerTransitioningDelegate{
