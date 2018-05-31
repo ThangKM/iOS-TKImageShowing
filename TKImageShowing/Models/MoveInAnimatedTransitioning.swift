@@ -52,11 +52,9 @@ UIViewControllerAnimatedTransitioning{
             let originFrame = tkimageView.frame
             
             if let superView = tkimageView.superview{
-                tkimageView.frame = superView.convert(tkimageView.frame, to: nil)
-                vwAnimated.frame = tkimageView.frame
-            }else{
-                vwAnimated.frame = tkimageView.frame
+                 tkimageView.frame = superView.convert(tkimageView.frame, to: nil)
             }
+             vwAnimated.frame = tkimageView.frame
             
             var imvViewToVC:UIView?
             if let tkVC = toVC as? TKImageShowing{

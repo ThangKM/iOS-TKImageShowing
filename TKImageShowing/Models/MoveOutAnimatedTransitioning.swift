@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 @objcMembers
 class MoveOutPresentAnimatedTransitioning: NSObject,
@@ -34,15 +35,12 @@ UIViewControllerAnimatedTransitioning{
         
         let containerView = transitionContext.containerView
         let animatedView = referenceCell?.imageItem.imageView.snapshotView(afterScreenUpdates: true)
-
-        weak var imvOfToVC:UIImageView! // UIImageView of fromView
         
         if let tkView = referenceView as? TKImageView{
             tkView.isSelectedToShowFullScreen = false
         }
-        imvOfToVC = referenceView
-        if imvOfToVC.image != nil && isAnimated{
-            imvOfToVC.isHidden = true
+        if referenceView?.image != nil && isAnimated{
+            referenceView?.isHidden = true
         }
         containerView.addSubview(toVC.view)
         
@@ -51,8 +49,8 @@ UIViewControllerAnimatedTransitioning{
             return
             
         } //snapshot fromview when animated view was hidden
-        if let vwAnimated = animatedView, imvOfToVC != nil{
-            
+        if let vwAnimated = animatedView, let referenceView = self.referenceView{
+
             let bgView = UIView(frame: toVC.view.bounds)
             bgView.backgroundColor = UIColor.black
             bgView.alpha = 1
@@ -60,17 +58,30 @@ UIViewControllerAnimatedTransitioning{
             containerView.addSubview(bgView)
             containerView.addSubview(vwAnimated)
             toVC.view.isHidden = true
-            vwAnimated.contentMode = imvOfToVC.contentMode
-            let originFrame = imvOfToVC.frame
+            vwAnimated.contentMode = referenceView.contentMode
+            let originFrame = referenceView.frame
             vwAnimated.center = fromVC.view.center
-            if let superView = imvOfToVC.superview{
-                 imvOfToVC.frame = superView.convert(imvOfToVC.frame, to: nil)
+            if let superView = referenceView.superview{
+                 referenceView.frame = superView.convert(referenceView.frame, to: nil)
             }
+            
+            var imageSize:CGSize = referenceView.bounds.size
+            if let image = referenceView.image{
+                if referenceView.contentMode == .scaleAspectFit{
+                    imageSize = AVMakeRect(aspectRatio: image.size, insideRect: referenceView.bounds).size
+                }
+            }
+            
+            let spacingTop = (referenceView.bounds.size.height - imageSize.height)/2
+            let spacingLeft = (referenceView.bounds.size.width - imageSize.width)/2
             
             UIView.animate(withDuration: transitionDuration(using: transitionContext), delay: 0.0, options: .curveEaseInOut, animations: {
                 if self.isAnimated{
-                    if imvOfToVC.superview != toVC.view{
-                        vwAnimated.frame = imvOfToVC.frame
+                    if referenceView.superview != toVC.view{
+                        vwAnimated.frame = CGRect(x: referenceView.frame.origin.x + spacingLeft,
+                                                  y: referenceView.frame.origin.y + spacingTop,
+                                                  width: imageSize.width,
+                                                  height: imageSize.height)
                     }else{
                         vwAnimated.frame = originFrame
                     }
@@ -86,13 +97,13 @@ UIViewControllerAnimatedTransitioning{
                 vwAnimated.removeFromSuperview()
                 snapShot.removeFromSuperview()
                 toVC.view.isHidden = false
-                imvOfToVC.isHidden = false
-                imvOfToVC.frame = originFrame
+                referenceView.isHidden = false
+                referenceView.frame = originFrame
                 transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
             })
         }else{
             toVC.view.isHidden = false
-            imvOfToVC.isHidden = false
+            referenceView?.isHidden = false
             transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
         }
     }

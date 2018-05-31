@@ -51,10 +51,6 @@ open class TKImageShowing: UIViewController, Zoomable{
         scrollItem(to: currentIndex)
     }
     
-    override open var prefersStatusBarHidden: Bool{
-        return true
-    }
-    
     override open func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         showActionView()
@@ -110,15 +106,19 @@ open class TKImageShowing: UIViewController, Zoomable{
     }
     
     func setupCloseButton(){
-        self.btnClose = UIButton(frame: CGRect(x: 10, y: 9.5, width: 15, height: 15))
+        self.btnClose = UIButton(frame: CGRect(x: 0, y: 0, width: 35, height: 35))
+        let imvClose = UIImageView(frame: CGRect(x: 12.5, y: 12.5, width: 15, height: 15))
+        imvClose.contentMode = .scaleToFill
+        
         let bundle = Bundle(for: TKImageShowing.self)
         let bundleURL = bundle.resourceURL?.appendingPathComponent("TKImageShowing.bundle")
         let resource = Bundle(url: bundleURL!)
-        self.btnClose.setImage(UIImage(named: "close.png", in: resource, compatibleWith: nil), for: .normal)
+        imvClose.image = UIImage(named: "close.png", in: resource, compatibleWith: nil)
+        self.btnClose.setImage(nil, for: .normal)
         self.btnClose.contentMode = .scaleToFill
-        btnClose.clipsToBounds = true
-        self.btnClose.setTitleColor(UIColor.white, for: .normal)
         self.btnClose.addTarget(self, action: #selector(self.closing), for: .touchUpInside)
+        self.actionView.addSubview(imvClose)
+        btnClose.center = imvClose.center
         self.actionView.addSubview(self.btnClose)
         
     }
