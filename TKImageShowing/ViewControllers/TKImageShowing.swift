@@ -9,7 +9,7 @@
 import UIKit
 
 
-open class TKImageShowing: UIViewController, Zoomable, UICollectionViewDelegate {
+open class TKImageShowing: UIViewController, Zoomable, UICollectionViewDelegate,UICollectionViewDataSource {
     
     open var canZoom: Bool = true
     open var bgColor: UIColor = .black
@@ -25,7 +25,7 @@ open class TKImageShowing: UIViewController, Zoomable, UICollectionViewDelegate 
     private let actionViewHeight = CGFloat(34)
     fileprivate let cellId = "TKImageCell"
     
-    var cvwCollection:UICollectionView!
+    internal var cwCollection:UICollectionView!
     
     private var isInCollection = false
     private var actionView:UIView!
@@ -34,7 +34,7 @@ open class TKImageShowing: UIViewController, Zoomable, UICollectionViewDelegate 
     
     open var currentCell:TKImageCell?{
         get{
-            return cvwCollection.visibleCells.first as? TKImageCell
+            return cwCollection.visibleCells.first as? TKImageCell
         }
     }
     
@@ -77,13 +77,13 @@ open class TKImageShowing: UIViewController, Zoomable, UICollectionViewDelegate 
         flowLayout.scrollDirection = .horizontal
         flowLayout.minimumLineSpacing = 0
   
-        self.cvwCollection = UICollectionView(frame: self.view.bounds, collectionViewLayout: flowLayout)
-        self.view.addSubview(self.cvwCollection!)
+        self.cwCollection = UICollectionView(frame: self.view.bounds, collectionViewLayout: flowLayout)
+        self.view.addSubview(self.cwCollection!)
         
-        self.cvwCollection.isPagingEnabled = true
-        self.cvwCollection.register(TKImageCell.self, forCellWithReuseIdentifier: self.cellId)
-        self.cvwCollection.dataSource = self
-        self.cvwCollection.delegate = self
+        self.cwCollection.isPagingEnabled = true
+        self.cwCollection.register(TKImageCell.self, forCellWithReuseIdentifier: self.cellId)
+        self.cwCollection.dataSource = self
+        self.cwCollection.delegate = self
         
         
     }
@@ -126,7 +126,7 @@ open class TKImageShowing: UIViewController, Zoomable, UICollectionViewDelegate 
     //MARK:- Action
     @objc func closing(){
 
-        if let currentCell = self.cvwCollection.visibleCells.first as? TKImageCell{
+        if let currentCell = self.cwCollection.visibleCells.first as? TKImageCell{
             currentCell.endZoom = {[weak self] in
                 self?.currentCell?.endZoom = nil
                 self?.dismiss(animated: true, completion: nil)
@@ -146,7 +146,7 @@ open class TKImageShowing: UIViewController, Zoomable, UICollectionViewDelegate 
     }
     
     func scrollItem(to index:Int){
-        cvwCollection.scrollToItem(at: IndexPath(row: index, section: 0), at: .right, animated: false)
+        cwCollection.scrollToItem(at: IndexPath(row: index, section: 0), at: .right, animated: false)
     }
     
     //MARK:- UICollectionViewDelegate
@@ -158,15 +158,13 @@ open class TKImageShowing: UIViewController, Zoomable, UICollectionViewDelegate 
     
     public func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let center = CGPoint(x: scrollView.contentOffset.x + (scrollView.frame.width / 2), y: (scrollView.frame.height / 2))
-        if let indexPath = self.cvwCollection.indexPathForItem(at: center) {
+        if let indexPath = self.cwCollection.indexPathForItem(at: center) {
             self.currentIndex = indexPath.row
         }
     }
-}
-
-//MARK:- EXTENSION UICollectionViewDataSource
-extension TKImageShowing:UICollectionViewDataSource{
-
+    
+    
+    //MARK:- EXTENSION UICollectionViewDataSource
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.images.flatMap({$0}).count
     }
@@ -180,6 +178,7 @@ extension TKImageShowing:UICollectionViewDataSource{
         cell.config(with: self)
         return cell
     }
+    
 }
 
 
