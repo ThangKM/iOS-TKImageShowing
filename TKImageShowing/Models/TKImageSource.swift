@@ -18,3 +18,23 @@ open class TKImageSource{
         self.image = image
     }
 }
+
+extension Array where  Element == String  {
+    public func toTKImageSource() -> [TKImageSource]{
+        var arr = [TKImageSource]()
+        self.forEach { (urlString) in
+            arr.append(TKImageSource(url: urlString, image: nil))
+        }
+        return arr
+    }
+}
+
+extension Array where  Element:UIImage {
+    public func toTKImageSource() -> [TKImageSource]{
+        var arr = [TKImageSource]()
+        self.forEach { (image) in
+            arr.append(TKImageSource(url: nil, image: image))
+        }
+        return arr
+    }
+}
