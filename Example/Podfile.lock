@@ -2,7 +2,7 @@ PODS:
   - SDWebImage (4.4.0):
     - SDWebImage/Core (= 4.4.0)
   - SDWebImage/Core (4.4.0)
-  - TKImageShowing (1.0.6):
+  - TKImageShowing (1.0.7):
     - SDWebImage (~> 4.0)
 
 DEPENDENCIES:
@@ -10,7 +10,7 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   SDWebImage: b534502786e43dde36dfcaee89356fe6df30e203
-  TKImageShowing: 4c7cc048add78235b9c0add4f425f2f068de1261
+  TKImageShowing: a3ebf233a588a96a0d67596f3193abcc6b96bf22
 
 PODFILE CHECKSUM: 50ae6336d89042a3b067ea9263f3875d2ae39bcc
 

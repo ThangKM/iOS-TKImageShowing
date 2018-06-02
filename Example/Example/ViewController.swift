@@ -17,19 +17,18 @@ class ViewController:UIViewController, UICollectionViewDelegate, UICollectionVie
         "https://www.gstatic.com/webp/gallery/2.jpg"
     ]
     
+    let images = [#imageLiteral(resourceName: "image"),#imageLiteral(resourceName: "image")]
+    
     let tkImageVC = TKImageShowing()
     
     @IBOutlet weak var cvwImages: UICollectionView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        var imageSource = [TKImageSource]()
-        arrImages.forEach { (urlString) in
-            imageSource.append(TKImageSource(url: urlString, image: nil))
-        }
-        tkImageVC.images = imageSource
-    }
+        tkImageVC.images = arrImages.toTKImageSource()
 
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return arrImages.count
     }
