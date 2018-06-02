@@ -1,6 +1,6 @@
 # TKImageShowing
 
-- Tap on Image to show fullscreen
+- Tap on an image to show it full screen
 
 ![](https://github.com/ThangKM/iOS-TKImageShowing/blob/master/Images/giphy%202.gif)
 
