@@ -55,7 +55,7 @@ you can use this library to show image fullscreen
 
   s.author             = { "Thang Kieu" => "thangkm.lk@gmail.com" }
   # Or just: s.author    = "appscyclone dev"
-  # s.authors            = { "appscyclone dev" => "dev@apps-cyclone.com" }
+  # s.authors            = { "Thang Kieu" => "thangkm.lk@gmail.com" }
   # s.social_media_url   = "http://twitter.com/appscyclone dev"
 
   # ――― Platform Specifics ――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -65,7 +65,7 @@ you can use this library to show image fullscreen
   #
 
    s.platform     = :ios
-   s.platform     = :ios, "10.0"
+   s.platform     = :ios, "11.0"
 
   #  When using multiple platforms
   # s.ios.deployment_target = "9.0"
