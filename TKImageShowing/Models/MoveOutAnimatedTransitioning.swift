@@ -18,7 +18,7 @@ UIViewControllerAnimatedTransitioning{
     
     private var isAnimated:Bool
     
-    init(animatedView:UIImageView?,animatedCell:TKImageCell?,isAnimated:Bool = true){
+    init(animatedView:UIImageView?,animatedCell:TKImageCell?,isAnimated:Bool = true) {
         self.referenceView = animatedView
         self.referenceCell = animatedCell
         self.isAnimated = isAnimated
@@ -44,12 +44,12 @@ UIViewControllerAnimatedTransitioning{
         }
         containerView.addSubview(toVC.view)
         
-        guard let snapShot = toVC.view.snapshotView(afterScreenUpdates: true) else{
+        guard let snapShot = toVC.view.snapshotView(afterScreenUpdates: true) else {
             transitionContext.completeTransition(true)
             return
             
         } //snapshot fromview when animated view was hidden
-        if let vwAnimated = animatedView, let referenceView = self.referenceView{
+        if let vwAnimated = animatedView, let referenceView = self.referenceView {
 
             let bgView = UIView(frame: toVC.view.bounds)
             bgView.backgroundColor = UIColor.black
@@ -101,7 +101,7 @@ UIViewControllerAnimatedTransitioning{
                 referenceView.frame = originFrame
                 transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
             })
-        }else{
+        } else {
             toVC.view.isHidden = false
             referenceView?.isHidden = false
             transitionContext.completeTransition(!transitionContext.transitionWasCancelled)

@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "TKImageShowing"
-  s.version      = "1.0.7"
+  s.version      = "1.0.8"
   s.summary      = "you can use this library to show image full screen."
 
   # This description is used to generate tags and improve search results.
@@ -133,9 +133,9 @@ you can use this library to show image fullscreen
   #  you can include multiple dependencies to ensure it works.
 
   # s.requires_arc = true
-	s.pod_target_xcconfig = { 'SWIFT_VERSION' => '3.3' }
+	s.pod_target_xcconfig = { 'SWIFT_VERSION' => '4.2' }
 
   # s.xcconfig = { "HEADER_SEARCH_PATHS" => "$(SDKROOT)/usr/include/libxml2" }
-    s.dependency "SDWebImage", "~> 4.0"
+    s.dependency "SDWebImage", "~> 4.4.6"
 
 end

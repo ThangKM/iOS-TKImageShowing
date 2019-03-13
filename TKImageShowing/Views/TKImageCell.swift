@@ -29,7 +29,7 @@ import UIKit
     
     
     //MARK:- Common init
-    func commonInit(){
+    func commonInit() {
         imageItem = TKImageItem()
         self.addSubview(imageItem)
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.quickZoom))
@@ -38,7 +38,7 @@ import UIKit
         self.addGestureRecognizer(tapGesture)
     }
     
-    func config(with zoomable:Zoomable){
+    func config(with zoomable:Zoomable) {
         imageItem.maximumZoom = zoomable.maximumZoom
         imageItem.canZoom = zoomable.canZoom
         imageItem.spacing = zoomable.spacing
@@ -46,16 +46,16 @@ import UIKit
         imageItem.update()
     }
     
-    @objc func quickZoom(){
-        if self.imageItem.zoomScale == 1{
+    @objc func quickZoom() {
+        if self.imageItem.zoomScale == 1 {
             self.imageItem.setZoomScale(self.imageItem.maximumZoom, animated: true)
-        }else{
+        } else {
             self.imageItem.setZoomScale(1, animated: true)
         }
         
     }
     
-    func setImage(_ image:TKImageSource){
+    func setImage(_ image:TKImageSource) {
         self.imageItem.setImage(image)
     }
     

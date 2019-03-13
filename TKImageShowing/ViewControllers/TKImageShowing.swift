@@ -58,7 +58,7 @@ open class TKImageShowing: UIViewController, Zoomable{
     
     //MARK:- COMMON INIT
     
-    func commonInit(){
+    func commonInit() {
         self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.showActionView)))
         setupCollectionView()
         setupActionView()
@@ -66,7 +66,7 @@ open class TKImageShowing: UIViewController, Zoomable{
 
     }
     
-    func setupCollectionView(){
+    func setupCollectionView() {
         
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.itemSize = CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
@@ -84,12 +84,12 @@ open class TKImageShowing: UIViewController, Zoomable{
         
     }
     
-    func setupActionView(){
+    func setupActionView() {
     
         self.actionView = UIView(frame: .zero)
         self.actionView.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(self.actionView)
-        self.view.bringSubview(toFront: self.actionView)
+        self.view.bringSubviewToFront(self.actionView)
         
         var margin:UILayoutGuide
         if #available(iOS 11.0, *) {
@@ -105,7 +105,7 @@ open class TKImageShowing: UIViewController, Zoomable{
 
     }
     
-    func setupCloseButton(){
+    func setupCloseButton() {
         self.btnClose = UIButton(frame: CGRect(x: 0, y: 0, width: 35, height: 35))
         let imvClose = UIImageView(frame: CGRect(x: 12.5, y: 12.5, width: 15, height: 15))
         imvClose.contentMode = .scaleToFill
@@ -124,7 +124,7 @@ open class TKImageShowing: UIViewController, Zoomable{
     }
     
     //MARK:- Action
-    @objc func closing(){
+    @objc func closing() {
 
         if let currentCell = self.cwCollection.visibleCells.first as? TKImageCell{
             currentCell.endZoom = {[weak self] in
@@ -135,7 +135,7 @@ open class TKImageShowing: UIViewController, Zoomable{
         }
     }
     
-    @objc func showActionView(){
+    @objc func showActionView() {
         
         UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseIn, animations: {
             let value =  self.isShowActionView ?  1 :  0
@@ -145,12 +145,12 @@ open class TKImageShowing: UIViewController, Zoomable{
         }
     }
     
-    func scrollItem(to index:Int){
+    func scrollItem(to index:Int) {
         cwCollection.scrollToItem(at: IndexPath(row: index, section: 0), at: .right, animated: false)
     }
 }
  //MARK:- UICollectionViewDelegate
-extension TKImageShowing:UICollectionViewDelegate{
+extension TKImageShowing:UICollectionViewDelegate {
     public func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         if let tkCell = cell as? TKImageCell{
             tkCell.resetZoom()
@@ -165,16 +165,16 @@ extension TKImageShowing:UICollectionViewDelegate{
     }
 }
 
-extension TKImageShowing:UICollectionViewDataSource{
+extension TKImageShowing:UICollectionViewDataSource {
     //MARK:- EXTENSION UICollectionViewDataSource
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.images.flatMap({$0}).count
+        return self.images.compactMap({$0}).count
     }
     
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: self.cellId, for: indexPath) as! TKImageCell
-        let imageSource = self.images.flatMap({$0})
+        let imageSource = self.images.compactMap({$0})
         cell.setImage(imageSource[indexPath.row])
         
         cell.config(with: self)
@@ -184,7 +184,7 @@ extension TKImageShowing:UICollectionViewDataSource{
 }
 
 //MARK: - Transition Animation
-extension TKImageShowing:UIViewControllerTransitioningDelegate{
+extension TKImageShowing:UIViewControllerTransitioningDelegate {
     public func animationController(forPresented presented: UIViewController,
                              presenting: UIViewController,
                              source: UIViewController)

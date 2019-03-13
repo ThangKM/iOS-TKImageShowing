@@ -41,7 +41,7 @@ open class TKImageView: UIImageView {
         self.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.presentFullScreen)))
     }
     
-    @objc private func presentFullScreen(){
+    @objc private func presentFullScreen() {
         isSelectedToShowFullScreen = true
         let vc = TKImageShowing()
         vc.canZoom = self.zoomalbe

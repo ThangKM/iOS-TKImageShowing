@@ -9,7 +9,7 @@
 import UIKit
 import SDWebImage
 
-open class TKImageSource{
+open class TKImageSource {
     open var url:String?
     open var image:UIImage?
     
@@ -20,7 +20,7 @@ open class TKImageSource{
 }
 
 extension Array where  Element == String  {
-    public func toTKImageSource() -> [TKImageSource]{
+    public func toTKImageSource() -> [TKImageSource] {
         var arr = [TKImageSource]()
         self.forEach { (urlString) in
             arr.append(TKImageSource(url: urlString, image: nil))
@@ -30,7 +30,7 @@ extension Array where  Element == String  {
 }
 
 extension Array where  Element:UIImage {
-    public func toTKImageSource() -> [TKImageSource]{
+    public func toTKImageSource() -> [TKImageSource] {
         var arr = [TKImageSource]()
         self.forEach { (image) in
             arr.append(TKImageSource(url: nil, image: image))

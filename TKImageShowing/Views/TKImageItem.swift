@@ -20,7 +20,7 @@ open class TKImageItem: UIScrollView, Zoomable{
     public var bgColor: UIColor = .black
     
     var endZoom:VoidCallBack?
-    open let imageView = UIImageView(frame: UIScreen.main.bounds)
+    public let imageView = UIImageView(frame: UIScreen.main.bounds)
  
     //MARK: - LYFE CYCLE
     public init() {
@@ -34,14 +34,14 @@ open class TKImageItem: UIScrollView, Zoomable{
     }
     
      //MARK: - CONFIG
-    func setupImage(){
+    func setupImage() {
         imageView.contentMode = .scaleAspectFit
         imageView.clipsToBounds = true
         imageView.frame.size = self.calculateImageViewFrame()
         setPictoCenter()
     }
     
-    private func setupUI(){
+    private func setupUI() {
         self.backgroundColor = bgColor
         maximumZoomScale = self.maximumZoom
         showsVerticalScrollIndicator = false
@@ -56,12 +56,12 @@ open class TKImageItem: UIScrollView, Zoomable{
     
     //MARK: - SUPPORT FUNCTION
     
-    open func setImage(_ source:TKImageSource){
+    open func setImage(_ source:TKImageSource) {
         if let img = source.image{
             imageView.image = img
             setupImage()
-        }else{
-            if let urlString = source.url{
+        } else {
+            if let urlString = source.url {
                 if let url = URL(string: urlString){
                     self.imageView.sd_setIndicatorStyle(.white)
                     self.imageView.sd_setShowActivityIndicatorView(true)
@@ -77,9 +77,9 @@ open class TKImageItem: UIScrollView, Zoomable{
         }
     }
     
-    func calculateImageViewFrame() -> CGSize{
+    func calculateImageViewFrame() -> CGSize {
         
-        if let image = imageView.image, imageView.contentMode == .scaleAspectFit{
+        if let image = imageView.image, imageView.contentMode == .scaleAspectFit {
             let picSize = image.size
             let picRatio = picSize.width / picSize.height
             let screenRatio = screenSize().width / screenSize().height
@@ -88,10 +88,10 @@ open class TKImageItem: UIScrollView, Zoomable{
                
                 return CGSize(width: screenSize().width - spacing,
                               height: screenSize().width  / picSize.width * (picSize.height - spacing))
-            }else{
+            } else {
                 return CGSize(width: screenSize().height / picSize.height  * picSize.width, height: screenSize().height)
             }
-        }else{
+        } else {
             return CGSize(width: screenSize().width, height: screenSize().height)
         }
     }
@@ -105,14 +105,14 @@ open class TKImageItem: UIScrollView, Zoomable{
         contentSize.height = imageView.frame.height
     }
     
-    func screenSize()->CGSize{
+    func screenSize()->CGSize {
         return frame.size
     }
     
-    open func resetZoom(isDismiss:Bool = false){
+    open func resetZoom(isDismiss:Bool = false) {
         if zoomScale != 1{
             setZoomScale(1, animated: true)
-        }else{
+        } else {
             if isDismiss{
                 self.endZoom?()
             }

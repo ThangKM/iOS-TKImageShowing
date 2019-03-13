@@ -10,7 +10,7 @@ import UIKit
 
 @objcMembers
 class MoveInPresentAnimatedTransitioning: NSObject,
-UIViewControllerAnimatedTransitioning{
+UIViewControllerAnimatedTransitioning {
     
     weak var referenceView:UIImageView? // of fromVC
 
@@ -51,7 +51,7 @@ UIViewControllerAnimatedTransitioning{
             
             let originFrame = tkimageView.frame
             
-            if let superView = tkimageView.superview{
+            if let superView = tkimageView.superview {
                  tkimageView.frame = superView.convert(tkimageView.frame, to: nil)
             }
              vwAnimated.frame = tkimageView.frame
@@ -59,7 +59,7 @@ UIViewControllerAnimatedTransitioning{
             var imvViewToVC:UIView?
             if let tkVC = toVC as? TKImageShowing{
                 if let  cell = tkVC.currentCell{
-                    if let imvSnapshot = cell.imageItem.imageView.snapshotView(afterScreenUpdates: true){
+                    if let imvSnapshot = cell.imageItem.imageView.snapshotView(afterScreenUpdates: true) {
                         imvViewToVC = imvSnapshot
                         imvViewToVC?.center = toVC.view.center
                     }
@@ -86,7 +86,7 @@ UIViewControllerAnimatedTransitioning{
                 tkimageView.isHidden = false
                 transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
             })
-        }else{
+        } else {
             referenceView?.isHidden = false
             transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
         }
