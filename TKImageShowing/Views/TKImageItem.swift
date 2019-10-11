@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import SDWebImage
+
 typealias VoidCallBack = ()->()
 
 open class TKImageItem: UIScrollView, Zoomable{
@@ -57,22 +59,20 @@ open class TKImageItem: UIScrollView, Zoomable{
     //MARK: - SUPPORT FUNCTION
     
     open func setImage(_ source:TKImageSource) {
-        if let img = source.image{
+        
+        if let img = source.image {
             imageView.image = img
             setupImage()
-        } else {
-            if let urlString = source.url {
-                if let url = URL(string: urlString){
-                    self.imageView.sd_setIndicatorStyle(.white)
-                    self.imageView.sd_setShowActivityIndicatorView(true)
-                    self.imageView.sd_addActivityIndicator()
-                    self.imageView.sd_setImage(with: url) { (image, _, _, _) in
-                        DispatchQueue.main.async {
-                            self.imageView.image = image
-                            self.setupImage()
-                        }
-                    }
-                }
+            return
+        }
+        
+        guard let urlString = source.url else { return }
+        guard let url = URL(string: urlString) else { return }
+        self.imageView.sd_imageIndicator = SDWebImageActivityIndicator.white
+        self.imageView.sd_setImage(with: url) { (image, _, _, _) in
+            DispatchQueue.main.async {
+                self.imageView.image = image
+                self.setupImage()
             }
         }
     }

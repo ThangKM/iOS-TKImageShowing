@@ -32,9 +32,30 @@ open class TKImageShowing: UIViewController, Zoomable{
     private var btnClose:UIButton!
     private var isShowActionView = true
     
+    private var transitionStyle: UIModalTransitionStyle = .crossDissolve
+    private var presentationStyle: UIModalPresentationStyle  = .fullScreen
+
     open var currentCell:TKImageCell?{
         get{
-            return cwCollection.visibleCells.first as? TKImageCell
+              return cwCollection.visibleCells.first as? TKImageCell
+        }
+    }
+
+    open override var modalTransitionStyle: UIModalTransitionStyle {
+        get {
+              return transitionStyle
+        }
+        set {
+              self.transitionStyle = newValue
+        }
+    }
+
+    open override var modalPresentationStyle: UIModalPresentationStyle {
+        get {
+              return presentationStyle
+        }
+        set {
+              self.presentationStyle = newValue
         }
     }
     
