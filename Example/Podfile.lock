@@ -1,9 +1,9 @@
 PODS:
-  - SDWebImage (4.4.6):
-    - SDWebImage/Core (= 4.4.6)
-  - SDWebImage/Core (4.4.6)
-  - TKImageShowing (1.0.7):
-    - SDWebImage (~> 4.0)
+  - SDWebImage (4.4.7):
+    - SDWebImage/Core (= 4.4.7)
+  - SDWebImage/Core (4.4.7)
+  - TKImageShowing (1.0.9):
+    - SDWebImage (~> 4.4.6)
 
 DEPENDENCIES:
   - TKImageShowing
@@ -14,9 +14,9 @@ SPEC REPOS:
     - TKImageShowing
 
 SPEC CHECKSUMS:
-  SDWebImage: 3f3f0c02f09798048c47a5ed0a13f17b063572d8
-  TKImageShowing: a3ebf233a588a96a0d67596f3193abcc6b96bf22
+  SDWebImage: c10d14a8883ebd89664f02a422006f66a85c0c5d
+  TKImageShowing: a9c18c82070d1fe8aec59fd29533e2c5c29ca1e2
 
 PODFILE CHECKSUM: 50ae6336d89042a3b067ea9263f3875d2ae39bcc
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.7.5
