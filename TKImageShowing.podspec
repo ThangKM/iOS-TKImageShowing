@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "TKImageShowing"
-  s.version      = "1.0.8"
+  s.version      = "1.1.0"
   s.summary      = "you can use this library to show image full screen."
 
   # This description is used to generate tags and improve search results.
