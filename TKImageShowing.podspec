@@ -124,6 +124,7 @@ you can use this library to show image fullscreen
 
   # s.library   = "iconv"
   # s.libraries = "iconv", "xml2"
+s.swift_version = "4.2"
 
 
   # ――― Project Settings ――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -136,6 +137,6 @@ you can use this library to show image fullscreen
 	s.pod_target_xcconfig = { 'SWIFT_VERSION' => '4.2' }
 
   # s.xcconfig = { "HEADER_SEARCH_PATHS" => "$(SDKROOT)/usr/include/libxml2" }
-    s.dependency "SDWebImage", "~> 4.4.6"
+    s.dependency "SDWebImage", "~> 5.2.3"
 
 end
